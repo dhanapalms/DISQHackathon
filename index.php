@@ -12,6 +12,9 @@
 <!-- you should always add your stylesheet (css) in the head tag so that it starts loading before the page html is being displayed -->	
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	
+	
+	
+
 </head>
 <body>
 
@@ -24,14 +27,23 @@
 		<div id="nav">
 			<ul>
 				<li><a href="#/home.html">Home</a></li>
-				<li><a href="update.php">Update</a></li>
+				<li><a href="modify.php">Update</a></li>
 				<li><a href="register.php">Register</a></li>
 			</ul>	
 		</div>
 		<div id="content">
 			<h2>List of Events</h2>
 		
-			
+					<table border="2">
+   <tr>
+      <th>Name</th>
+      <th>EventName</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Eventdate</th>
+	  <th> Register</th>
+    </tr>
+	
 			<?php
 			
 			            $dbhost = 'localhost';
@@ -47,36 +59,38 @@
             mysql_select_db('event');
 			
 			$sql="SELECT name,eventname,description,location,eventdate FROM registered_users";
-			$result=mysql_query($sql);
-			?>
-			<table border="2">
-   <tr>
-      <th>Name</th>
-      <th>EventName</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Eventdate</th>
-    </tr>
-	
-	 <?php
-    while ($array = mysql_fetch_array($result));
+            mysql_select_db('event');
+			$result=mysql_query($sql,$conn);
+			
+            mysql_select_db('event');
+    while ($array = mysql_fetch_array($result))
     {
         print "<tr> <td>";
         echo $array['name']; 
         print "</td> <td>";
         echo $array['eventname']; 
         print "</td> <td>";
-        echo $array[]; 
+        echo $array['description']; 
         print "</td> <td>";
-        echo $array[3]; 
-        print "</td> </tr>";
-        echo $array[4]; 
-        print "</td> </tr>";
+        echo $array['location']; 
+        print "</td> <td>";
+        echo $array['eventdate']; 
+        print "</td> <td>";
+		$x=$array['eventname'];
+	   echo "<a href='register.php?val=$x'>Register</a>";
+		echo "</tr>";
     }
+	
+	
+
 ?>
+
+
+
+</table>
 			
 			
-			
+
 		</div>
 		<div id="footer">
 			<p>
@@ -86,3 +100,11 @@
 	</div>
 </body>
 </html>
+
+
+				<?php
+
+	if (isset($_POST['checksub'])){
+echo $_POST['register']; // Displays value of checked checkbox.
+}
+?>	

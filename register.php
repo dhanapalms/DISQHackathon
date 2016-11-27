@@ -1,5 +1,15 @@
 <?php
+
+	$aa=$_GET['val'];
+	echo "<html><head></head><body><h1>";
+	echo $aa;
+	echo "EVENT";
+	echo "</h1/></body></html>";
 if(count($_POST)>0) {
+	
+	
+	$aa=$_GET['val'];
+	echo $aa;
 	/* Form Required Field Validation */
 	foreach($_POST as $key=>$value) {
 	if(empty($_POST[$key])) {
@@ -7,10 +17,7 @@ if(count($_POST)>0) {
 	break;
 	}
 	}
-	/* Password Matching Validation */
-	if($_POST['password'] != $_POST['confirm_password']){ 
-	$message = 'Passwords should be same<br>'; 
-	}
+	
 
 	/* Email Validation */
 	if(!isset($message)) {
@@ -20,11 +27,7 @@ if(count($_POST)>0) {
 	}
 
 	/* Validation to check if gender is selected */
-	if(!isset($message)) {
-	if(!isset($_POST["gender"])) {
-	$message = " Gender field is required";
-	}
-	}
+	
 
 	/* Validation to check if Terms and Conditions are accepted */
 	if(!isset($message)) {
@@ -36,8 +39,8 @@ if(count($_POST)>0) {
 	if(!isset($message)) {
 		require_once("dbcontroller.php");
 		$db_handle = new DBController();
-		$query = "INSERT INTO registered_users (name,eventname,description,location,eventdate, password, email, gender) VALUES
-		('" . $_POST["name"] . "','" . $_POST["eventname"] . "','" . $_POST["desc"] . "','" . $_POST["loc"] . "','" . $_POST["dat"] . "', '" . md5($_POST["password"]) . "', '" . $_POST["userEmail"] . "', '" . $_POST["gender"] . "')";
+		$query = "INSERT INTO registered_users (name,eventname,description,location,eventdate,  email) VALUES
+		('" . $_POST["name"] . "','" . $_POST["eventname"] . "','" . $_POST["desc"] . "','" . $_POST["loc"] . "','" . $_POST["dat"] . "',  '" . $_POST["userEmail"] . "')";
 		$result = $db_handle->insertQuery($query);
 		if(!empty($result)) {
 			$message = "You have registered successfully!";	
@@ -85,24 +88,12 @@ body{width:610px;}
 <td>Event Date</td>
 <td><input type="Date" class="demoInputBox" name="dat" value="<?php if(isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></td>
 </tr>
-<tr>
-<td>Password</td>
-<td><input type="password" class="demoInputBox" name="password" value=""></td>
-</tr>
-<tr>
-<td>Confirm Password</td>
-<td><input type="password" class="demoInputBox" name="confirm_password" value=""></td>
-</tr>
+
 <tr>
 <td>Email</td>
 <td><input type="text" class="demoInputBox" name="userEmail" value="<?php if(isset($_POST['userEmail'])) echo $_POST['userEmail']; ?>"></td>
 </tr>
-<tr>
-<td>Gender</td>
-<td><input type="radio" name="gender" value="Male" <?php if(isset($_POST['gender']) && $_POST['gender']=="Male") { ?>checked<?php  } ?>> Male
-<input type="radio" name="gender" value="Female" <?php if(isset($_POST['gender']) && $_POST['gender']=="Female") { ?>checked<?php  } ?>> Female
-</td>
-</tr>
+
 <tr>
 <td></td>
 <td><input type="checkbox" name="terms"> I accept Terms and Conditions</td>
