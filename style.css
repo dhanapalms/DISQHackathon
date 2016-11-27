@@ -1,6 +1,18 @@
 /*
 * multi-line comment
 */
+
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
 p{ line-height: 1em; }
 h1, h2, h3, h4{
     color: orange;

@@ -8,7 +8,6 @@
 if(count($_POST)>0) {
 	
 	
-	$aa=$_GET['val'];
 	echo $aa;
 	/* Form Required Field Validation */
 	foreach($_POST as $key=>$value) {

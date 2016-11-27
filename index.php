@@ -12,6 +12,17 @@
 <!-- you should always add your stylesheet (css) in the head tag so that it starts loading before the page html is being displayed -->	
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	
+	<script>
+	var dateObj = new Date();
+var month = dateObj.getUTCMonth() + 1; //months from 1-12
+var day = dateObj.getUTCDate();
+var year = dateObj.getUTCFullYear();
+
+var newdate = year + "/" + month + "/" + day;
+alert(newdate);
+	</script>
+	
+	
 	
 	
 
@@ -22,7 +33,7 @@
 
 	<div id="page">
 		<div id="logo">
-			<h1><a href="/" id="logoLink">EVENT REGISTRATION PORTAL</a></h1>
+			<h1><a href="/" id="logoLink" ><font color="FF00CC">EVENT REGISTRATION PORTAL</font></a></h1>
 		</div>
 		<div id="nav">
 			<ul>
@@ -77,7 +88,7 @@
         echo $array['eventdate']; 
         print "</td> <td>";
 		$x=$array['eventname'];
-	   echo "<a href='register.php?val=$x'>Register</a>";
+	   echo "<a href='register.php?val=$x' style='background-color:#ffffa0'>Register</a>";
 		echo "</tr>";
     }
 	
